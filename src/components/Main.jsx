@@ -2,6 +2,10 @@ import ListItems from "./ListItems";
 import {CORE_CONCEPTS} from '../data'
 import TabButtons from "./TabButtons";
 export default function Main() {
+  const handleSelect = ()=>{
+    console.log("Selected");
+    
+  }
   return (
     <>
       <main>
@@ -18,11 +22,12 @@ export default function Main() {
         <section id="examples">
           <h2>Examples</h2>
             <menu>
-              <TabButtons>Components</TabButtons>
-              <TabButtons>JSX</TabButtons>
-              <TabButtons>Props</TabButtons>
-              <TabButtons>States</TabButtons>
+              <TabButtons onSelect={handleSelect}>Components</TabButtons>
+              <TabButtons onSelect={handleSelect}>JSX</TabButtons>
+              <TabButtons onSelect={handleSelect}>Props</TabButtons>
+              <TabButtons onSelect={handleSelect}>States</TabButtons>
             </menu>
+            dynamic contents
         </section>
       </main>
     </>
