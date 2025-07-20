@@ -1,33 +1,15 @@
-import ListItems from "./ListItems";
-import {CORE_CONCEPTS ,EXAMPLES} from '../data'
 import TabButtons from "./TabButtons";
+import { EXAMPLES } from "../data";
 import { useState } from "react";
-export default function Main() {
-  const [item,setItem]=useState("");
-  // now we need to know which button was selected and then display dynamic content according to it 
-  const handleSelect = (selectedButton)=>{
-    setItem(selectedButton)
-    console.log("Selected");
-  }
-  return (
-    <>
-      <main>
-        <section id="core-concepts">
-          <h2>Time to get started!</h2>
-          <ul>
+export default function Examples(){
 
-            {/* dyanmically displaying the list */}
-
-            {CORE_CONCEPTS.map((conceptItem,key)=><ListItems key={conceptItem.title} {...conceptItem} />   )}
-
-            {/* This data is displayed not dynamically so in the data.js if any of the data is missing it will throw an error */}
-            {/* <ListItems {...CORE_CONCEPTS[0]} />
-            <ListItems {...CORE_CONCEPTS[1]} />
-            <ListItems {...CORE_CONCEPTS[2]} />
-            <ListItems {...CORE_CONCEPTS[3]} /> */}
-
-          </ul>
-        </section>
+     const [item,setItem]=useState("");
+      // now we need to know which button was selected and then display dynamic content according to it 
+    const handleSelect = (selectedButton)=>{
+        setItem(selectedButton)
+        console.log("Selected");
+    }
+    return (
         <section id="examples">
           <h2>Examples</h2>
             <menu>
@@ -50,7 +32,5 @@ export default function Main() {
                 <p>Select a Button</p>
               ) }
         </section>
-      </main>
-    </>
-  );
+    )
 }
