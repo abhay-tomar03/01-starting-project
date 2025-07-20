@@ -1,10 +1,13 @@
 import ListItems from "./ListItems";
-import {CORE_CONCEPTS} from '../data'
+import {CORE_CONCEPTS ,EXAMPLES} from '../data'
 import TabButtons from "./TabButtons";
+import { useState } from "react";
 export default function Main() {
-  const handleSelect = ()=>{
+  const [item,setItem]=useState("components");
+  // now we need to know which button was selected and then display dynamic content according to it 
+  const handleSelect = (selectedButton)=>{
+    setItem(selectedButton)
     console.log("Selected");
-    
   }
   return (
     <>
@@ -22,12 +25,20 @@ export default function Main() {
         <section id="examples">
           <h2>Examples</h2>
             <menu>
-              <TabButtons onSelect={handleSelect}>Components</TabButtons>
-              <TabButtons onSelect={handleSelect}>JSX</TabButtons>
-              <TabButtons onSelect={handleSelect}>Props</TabButtons>
-              <TabButtons onSelect={handleSelect}>States</TabButtons>
+              <TabButtons onSelect={()=>handleSelect('components')}>Components</TabButtons>
+              <TabButtons onSelect={()=>handleSelect('jsx')}>JSX</TabButtons>
+              <TabButtons onSelect={()=>handleSelect('props')}>Props</TabButtons>
+              <TabButtons onSelect={()=>handleSelect('state')}>States</TabButtons>
             </menu>
-            dynamic contents
+            <div id="tab-contents">
+              <h3>{EXAMPLES[item].title} </h3>
+              <p>{EXAMPLES[item].description}</p>
+              <pre>
+                <code>
+                    {EXAMPLES[item].code}
+                </code>
+              </pre>
+            </div>
         </section>
       </main>
     </>
