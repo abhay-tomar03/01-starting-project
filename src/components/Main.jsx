@@ -3,7 +3,7 @@ import {CORE_CONCEPTS ,EXAMPLES} from '../data'
 import TabButtons from "./TabButtons";
 import { useState } from "react";
 export default function Main() {
-  const [item,setItem]=useState("components");
+  const [item,setItem]=useState("");
   // now we need to know which button was selected and then display dynamic content according to it 
   const handleSelect = (selectedButton)=>{
     setItem(selectedButton)
@@ -25,20 +25,24 @@ export default function Main() {
         <section id="examples">
           <h2>Examples</h2>
             <menu>
-              <TabButtons onSelect={()=>handleSelect('components')}>Components</TabButtons>
-              <TabButtons onSelect={()=>handleSelect('jsx')}>JSX</TabButtons>
-              <TabButtons onSelect={()=>handleSelect('props')}>Props</TabButtons>
-              <TabButtons onSelect={()=>handleSelect('state')}>States</TabButtons>
+              <TabButtons isSelected={item==='components'} onSelect={()=>handleSelect('components')}>Components</TabButtons>
+              <TabButtons isSelected={item==='jsx'} onSelect={()=>handleSelect('jsx')}>JSX</TabButtons>
+              <TabButtons isSelected={item==='props'} onSelect={()=>handleSelect('props')}>Props</TabButtons>
+              <TabButtons isSelected={item==='state'} onSelect={()=>handleSelect('state')}>States</TabButtons>
             </menu>
-            <div id="tab-contents">
-              <h3>{EXAMPLES[item].title} </h3>
-              <p>{EXAMPLES[item].description}</p>
-              <pre>
-                <code>
-                    {EXAMPLES[item].code}
-                </code>
-              </pre>
-            </div>
+              { item ? (
+                <div id="tab-content">
+                  <h3>{EXAMPLES[item].title} </h3>
+                  <p>{EXAMPLES[item].description}</p>
+                  <pre>
+                    <code>
+                        {EXAMPLES[item].code}
+                    </code>
+                  </pre>
+                </div>
+              ):(
+                <p>Select a Button</p>
+              ) }
         </section>
       </main>
     </>
